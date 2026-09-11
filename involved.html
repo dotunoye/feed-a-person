@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>Get involved | Feed A Person</title>
+<meta name="description" content="Donate or volunteer with Feed A Person. Help rescued food reach the people who need it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer>
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="index.html" aria-label="Feed A Person home">
+<span class="brand-mark" aria-hidden="true">fap<span>.</span>
+</span>
+<span class="brand-name">FEED A PERSON<br>
+<small>GOOD FOOD. SHARED.</small>
+</span>
+</a>
+<button class="menu-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="site-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<a href="about.html">About us</a>
+<a href="programs.html">Our work</a>
+<a href="impact.html">Gallery</a>
+<a href="involved.html" aria-current="page">Get involved</a>
+<a href="contact.html">Contact</a>
+<a class="btn btn-donate btn-small" href="involved.html#donate">Donate <span aria-hidden="true">↗</span>
+</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section class="page-hero">
+<div class="container">
+<span class="eyebrow">MAKE ROOM FOR KINDNESS</span>
+<h1>A little from you.<br>A lot to someone.</h1>
+<p>Give a meal. Give your time. Help us go further.</p>
+</div>
+</section>
+<div class="container path-nav">
+<a href="#donate">01 / Donate <span aria-hidden="true">↓</span>
+</a>
+<a href="#volunteer">02 / Volunteer <span aria-hidden="true">↓</span>
+</a>
+</div>
+<section class="section" id="donate">
+<div class="container split align-start">
+<div class="section-copy">
+<span class="eyebrow">01 / GIVE A MEAL</span>
+<h2>Help the next meal<br>find its way.</h2>
+<p>Your support helps us collect, coordinate, and share food with care.</p>
+<figure class="donate-image">
+<img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&amp;fit=crop&amp;w=1000&amp;h=650&amp;q=85" alt="A nourishing bowl of freshly prepared food" width="1000" height="650" loading="lazy">
+</figure>
+<div class="pledge">
+<h3>Our transparency pledge</h3>
+<p>Clear giving. Accountable use. Verified payment details before donations open.</p>
+</div>
+</div>
+<div class="donation-card">
+<span class="eyebrow">EVERY CONTRIBUTION COUNTS</span>
+<h3>Give with purpose.</h3>
+<fieldset class="amount-fieldset">
+<legend>Choose an amount (NGN)</legend>
+<div class="amount-options">
+<button class="amount-button" type="button" data-amount="2000" aria-pressed="false">₦2,000</button>
+<button class="amount-button selected" type="button" data-amount="5000" aria-pressed="true">₦5,000</button>
+<button class="amount-button" type="button" data-amount="10000" aria-pressed="false">₦10,000</button>
+</div>
+<label for="custom-amount">Or enter an amount (₦)</label>
+<input id="custom-amount" type="number" min="100" step="1" inputmode="numeric" placeholder="Your amount">
+</fieldset>
+<button id="donate-button" class="btn btn-donate btn-wide" type="button" aria-describedby="donation-status">Donate ₦5,000 <span aria-hidden="true">↗</span>
+</button>
+<p class="form-status" id="donation-status" role="status">Online giving is not connected yet. No payment will be taken.</p>
+<div class="bank-details">
+<h3>Bank transfer</h3>
+<dl>
+<div>
+<dt>Account name</dt>
+<dd>Awaiting confirmation</dd>
+</div>
+<div>
+<dt>Bank</dt>
+<dd>Awaiting confirmation</dd>
+</div>
+<div>
+<dt>Account number</dt>
+<dd>Not yet published</dd>
+</div>
+</dl>
+<a class="text-link" href="mailto:feedaperson.initiative@gmail.com?subject=Donation%20enquiry">Ask about giving <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section surface-section" id="volunteer">
+<div class="container split align-start">
+<div class="section-copy">
+<span class="eyebrow">02 / GIVE YOUR TIME</span>
+<h2>Be the reason<br>a meal gets there.</h2>
+<p>Collect. Coordinate. Distribute.<br>Bring your skills. We’ll bring the shared purpose.</p>
+<a class="text-link" href="mailto:feedaperson.initiative@gmail.com?subject=Volunteer%20enquiry">Talk to our team <span aria-hidden="true">↗</span>
+</a>
+</div>
+<form class="surface-form" method="post" data-form="volunteer">
+<h3>Count me in.</h3>
+<p class="note">All fields required. Online intake is awaiting connection.</p>
+<div class="field">
+<label for="name">Full name</label>
+<input id="name" name="name" type="text" autocomplete="name" required>
+</div>
+<div class="field">
+<label for="email">Email address</label>
+<input id="email" name="email" type="email" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="phone">Phone number</label>
+<input id="phone" name="phone" type="tel" autocomplete="tel" required>
+</div>
+<div class="field">
+<label for="help">How can you help?</label>
+<select id="help" name="help" required>
+<option value="">Choose an area</option>
+<option>Food collection & distribution</option>
+<option>Transport & logistics</option>
+<option>Event & catering partnerships</option>
+<option>Community outreach</option>
+<option>Wherever I’m needed</option>
+</select>
+</div>
+<button type="submit" class="btn btn-submit btn-wide" disabled>Submit interest <span aria-hidden="true">↗</span>
+</button>
+<p class="form-status" role="status">
+</p>
+<noscript>
+<p class="note">Please email us to volunteer. This form needs JavaScript.</p>
+</noscript>
+</form>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container footer-grid">
+<div>
+<a class="brand" href="index.html" aria-label="Feed A Person home">
+<span class="brand-mark" aria-hidden="true">fap<span>.</span>
+</span>
+<span class="brand-name">FEED A PERSON<br>
+<small>GOOD FOOD. SHARED.</small>
+</span>
+</a>
+<p>Good food deserves a second destination.<br>Someone’s plate.</p>
+</div>
+<div>
+<h2>Discover</h2>
+<a href="about.html">Our story</a>
+<a href="programs.html">Our work</a>
+<a href="impact.html">The gallery</a>
+</div>
+<div>
+<h2>Make a difference</h2>
+<a href="involved.html#donate">Donate</a>
+<a href="involved.html#volunteer">Volunteer with us</a>
+<a href="contact.html">Partner with FAP</a>
+</div>
+<div>
+<h2>Find us</h2>
+<p>Covenant University,<br>Ota, Ogun state.</p>
+<a href="tel:+2347047341823">07047341823</a>
+<a class="footer-email" href="mailto:feedaperson.initiative@gmail.com">feedaperson.initiative@gmail.com</a>
+</div>
+</div>
+<div class="container footer-bottom">
+<span>© <span data-year>2026</span> Feed A Person Initiative</span>
+<span>With care. With community. With purpose.</span>
+</div>
+</footer>
+</body>
+</html>
