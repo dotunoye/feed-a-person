@@ -50,37 +50,62 @@ document.querySelectorAll("[data-year]").forEach((el) => {
   el.textContent = new Date().getFullYear();
 });
 
-// Counters remain readable without JS and animate once when visible.
+// Static final values remain available without JavaScript or with reduced motion.
 const formatter = new Intl.NumberFormat("en-NG");
-const counters = document.querySelectorAll("[data-count]");
+const counters = document.querySelectorAll("[data-target], [data-count]");
 function animateCounter(element) {
-  const target = Number(element.dataset.count);
-  element.setAttribute("aria-label", formatter.format(target) + " plus");
-  if (motionPreference.matches) return;
-  const started = performance.now();
+  const target = Number(element.dataset.target ?? element.dataset.count);
+  const suffix = element.dataset.suffix || "";
+  const finalValue = formatter.format(target) + suffix;
+  element.setAttribute("aria-label", finalValue);
+  if (motionPreference.matches) { element.textContent = finalValue; return; }
+  const start = performance.now();
   function tick(now) {
-    const progress = motionPreference.matches
-      ? 1
-      : Math.min((now - started) / 1400, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    element.textContent = formatter.format(Math.round(target * eased));
+    const progress = motionPreference.matches ? 1 : Math.min((now - start) / 1400, 1);
+    element.textContent = formatter.format(Math.round(target * (1 - (1 - progress) ** 3))) + suffix;
     if (progress < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 }
 if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 },
-  );
-  counters.forEach((counter) => observer.observe(counter));
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { animateCounter(entry.target); observer.unobserve(entry.target); }
+  }), { threshold: 0.5 });
+  counters.forEach(counter => observer.observe(counter));
+}
+
+// Background video is optional: keep the photo on reduced motion, data saver, or failure.
+const video = document.querySelector(".hero-video");
+const videoControl = document.querySelector(".video-control");
+if (video && videoControl) {
+  let userPaused = false;
+  let inView = true;
+  const allowed = () => !motionPreference.matches && !navigator.connection?.saveData;
+  function syncLabel() { videoControl.textContent = video.paused ? "Play video" : "Pause video"; }
+  async function syncVideo() {
+    if (!allowed()) {
+      video.pause(); video.classList.remove("is-playing"); videoControl.hidden = true; return;
+    }
+    if (userPaused || document.hidden || !inView) { video.pause(); return; }
+    if (!video.src) video.src = video.dataset.src;
+    try { await video.play(); } catch { videoControl.hidden = false; syncLabel(); }
+  }
+  video.addEventListener("playing", () => {
+    if (!allowed()) { syncVideo(); return; }
+    video.classList.add("is-playing"); videoControl.hidden = false; syncLabel();
+  });
+  video.addEventListener("pause", syncLabel);
+  video.addEventListener("error", () => {
+    video.classList.remove("is-playing"); videoControl.hidden = true;
+  });
+  videoControl.addEventListener("click", () => { userPaused = !video.paused; syncVideo(); });
+  motionPreference.addEventListener("change", syncVideo);
+  document.addEventListener("visibilitychange", syncVideo);
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(entries => { inView = entries[0].isIntersecting; syncVideo(); }).observe(video);
+  }
+  if (document.readyState === "complete") syncVideo();
+  else window.addEventListener("load", syncVideo, { once: true });
 }
 
 const donateButton = document.querySelector("#donate-button");
@@ -91,8 +116,8 @@ function updateDonationButton() {
   if (donateButton)
     donateButton.textContent =
       donationAmount > 0
-        ? `Donate ₦${formatter.format(donationAmount)} ↗`
-        : "Donate ↗";
+        ? `Donate ₦${formatter.format(donationAmount)}`
+        : "Donate";
 }
 amountButtons.forEach((button) =>
   button.addEventListener("click", () => {
@@ -183,3 +208,4 @@ document.querySelectorAll("form[data-form]").forEach((form) => {
     }
   });
 });
+
