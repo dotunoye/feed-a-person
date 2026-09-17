@@ -209,3 +209,30 @@ document.querySelectorAll("form[data-form]").forEach((form) => {
   });
 });
 
+// Keep the three involvement paths in one focused, keyboard-accessible panel.
+const switcherTabs = [...document.querySelectorAll(".switcher-tab")];
+const switcherPanels = [...document.querySelectorAll(".switcher-panel")];
+function activateInvolvementTab(tab, shouldFocus = false) {
+  const target = tab.dataset.switch;
+  switcherTabs.forEach((item) => {
+    const selected = item === tab;
+    item.setAttribute("aria-selected", String(selected));
+    item.tabIndex = selected ? 0 : -1;
+  });
+  switcherPanels.forEach((panel) => { panel.hidden = panel.id !== target; });
+  history.replaceState(null, "", `#${target}`);
+  if (shouldFocus) tab.focus();
+}
+switcherTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => activateInvolvementTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? switcherTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + switcherTabs.length) % switcherTabs.length;
+    activateInvolvementTab(switcherTabs[next], true);
+  });
+});
+if (switcherTabs.length && location.hash) {
+  const requested = switcherTabs.find((tab) => `#${tab.dataset.switch}` === location.hash);
+  if (requested) activateInvolvementTab(requested);
+}

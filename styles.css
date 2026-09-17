@@ -62,6 +62,7 @@ h3 {
 }
 h2 {
   font-size: clamp(30px, 3.2vw, 45px);
+  font-family: var(--font-heading);
 }
 h3 {
   font-size: 22px;
@@ -864,7 +865,7 @@ textarea {
   font-size: 12px;
 }
 .footer-grid h2 {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
   margin: 10px 0 23px;
@@ -873,7 +874,7 @@ textarea {
   display: block;
   width: fit-content;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 11px;
 }
 .footer-grid > div > a:not(.brand):hover {
@@ -1136,7 +1137,7 @@ textarea {
   .split {
     gap: 35px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .split.reverse > figure {
     order: 0;
@@ -1715,4 +1716,70 @@ textarea {
   .hero-video {
     display: none;
   }
+}
+
+/* Refined calls to action and readable footer type. */
+.btn-secondary {
+  min-width: 154px;
+  border: 1px solid #aeadad;
+  background: transparent;
+  color: #aeadad;
+}
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: #121212;
+}
+.cta-section .actions .btn { min-width: 154px; }
+.social-links { display: flex; gap: 10px; margin-top: 22px; }
+.social-links a {
+  display: grid; place-items: center; width: 38px; height: 38px;
+  color: var(--text-main); border: 1px solid var(--border-subtle); border-radius: 50%;
+}
+.social-links a:hover { color: var(--brand-blue); border-color: var(--brand-blue); }
+.social-links svg { width: 17px; height: 17px; fill: currentColor; }
+
+/* Alternating mission and vision story blocks. */
+.about-split { align-items: center; }
+.about-split .feature-image img { aspect-ratio: 1.1; }
+.about-split .section-copy { max-width: 530px; }
+.about-split.reverse .feature-image { order: 2; }
+.about-split.reverse .section-copy { order: 1; }
+
+/* Full-height stacked work panels, progressively uncovered as the page scrolls. */
+.work-stack { position: relative; }
+.work-panel {
+  position: sticky; top: 0; min-height: 100vh; display: grid; align-items: center;
+  padding: clamp(80px, 11vw, 150px) 0; border-top: 1px solid var(--border-subtle);
+}
+.work-panel:nth-child(1) { background: #181818; z-index: 1; }
+.work-panel:nth-child(2) { background: #1e1e1e; z-index: 2; }
+.work-panel:nth-child(3) { background: #252525; z-index: 3; }
+.work-panel .work-content { max-width: 660px; }
+.work-panel h2 { font-size: clamp(44px, 6vw, 82px); font-family: var(--font-heading); font-weight: 400; }
+.work-panel p { max-width: 520px; font-size: 16px; margin: 24px 0 30px; }
+
+/* Three-way involvement switcher. */
+.involvement-switcher { padding-block: 54px 92px; }
+.switcher-tabs { display: flex; gap: 10px; padding: 8px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 16px; margin-bottom: 44px; }
+.switcher-tab { flex: 1; min-height: 52px; border: 1px solid transparent; border-radius: 10px; background: transparent; color: var(--text-muted); font-weight: 600; }
+.switcher-tab[aria-selected="true"] { color: var(--text-main); background: #2a2a2a; border-color: var(--border-subtle); }
+.switcher-panel[hidden] { display: none; }
+.partner-intro { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 16px; padding: clamp(28px, 4vw, 52px); }
+
+@media (min-width: 601px) {
+  .site-footer { padding-top: 76px; }
+  .footer-grid h2 { font-size: 15px; margin-bottom: 20px; }
+  .footer-grid > div > a:not(.brand), .footer-grid > div > p { font-size: 14px; line-height: 1.7; }
+  .footer-grid > div:first-child p { font-size: 14px; }
+  .footer-bottom { font-size: 12px; }
+}
+@media (max-width: 600px) {
+  .about-split .section-copy, .about-split.reverse .section-copy { order: 1; }
+  .about-split .feature-image, .about-split.reverse .feature-image { order: 2; margin-top: -10px; }
+  .switcher-tabs { gap: 4px; padding: 5px; }
+  .switcher-tab { min-height: 47px; font-size: 11px; }
+  .work-panel { min-height: 88vh; padding-block: 90px; }
+  .work-panel p { font-size: 14px; }
 }
