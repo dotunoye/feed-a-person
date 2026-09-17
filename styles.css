@@ -767,6 +767,10 @@ textarea {
 .contact-details {
   display: grid;
   gap: 25px;
+  padding: 36px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-ambient);
 }
 .contact-details .eyebrow {
   margin-bottom: 8px;
@@ -780,7 +784,6 @@ textarea {
 }
 .contact-form {
   padding-top: 38px;
-  margin-top: 38px;
   border-top: 1px solid var(--border-subtle);
 }
 .contact-form h2 {
@@ -792,8 +795,45 @@ textarea {
 .contact-form .grid {
   gap: 18px;
 }
+
+.map-wrapper {
+  position: relative;
+  min-height: 420px;
+  width: 100%;
+}
+
+.map-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  /* Dark mode filter to prevent stark white iframe maps from blowing out the dark theme */
+  filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Mobile Stacking: Text Details First, Map Second */
+@media (max-width: 900px) {
+  .coverage-card {
+    grid-template-columns: 1fr;
+  }
+
+  .coverage-details {
+    order: 1;
+    padding: 2rem 1.5rem;
+  }
+
+  .map-wrapper {
+    order: 2;
+    min-height: 320px;
+  }
+}
 .map-panel {
-  background: var(--bg-surface);
+    display: grid;
+    background: var(--bg-surface);
+    margin: 24px;
+    max-width: 1100px;
+    height: 500px;
+    margin-inline: auto;
 }
 .map-illustration {
   position: relative;
@@ -929,6 +969,11 @@ textarea {
   .surface-form {
     padding: 30px;
   }
+  .map-panel {
+    margin: 24px;
+    max-width: 1100px;
+    height: 500px;
+}
 }
 @media (max-width: 900px) {
   :root {
@@ -1044,6 +1089,11 @@ textarea {
   .cta-inner .actions {
     gap: 20px;
   }
+  .map-panel {
+    max-width: 1200px;
+    height: 500px;
+    margin-inline: 24px;
+}
 }
 @media (max-width: 600px) {
   :root {
@@ -1253,6 +1303,12 @@ textarea {
   .map-illustration > svg {
     height: 370px;
   }
+  .map-panel {
+    margin: 24px;
+    max-width: 1200px;
+    height: 500px;
+    
+}
   .map-caption {
     padding: 27px;
   }
@@ -1731,14 +1787,44 @@ textarea {
   border-color: var(--brand-blue);
   color: #121212;
 }
+.social-link a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-secondary, #c4c4c4);
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  color: var(--color-primary, #38b6ff);
+  border-color: var(--color-primary, #38b6ff);
+  transform: translateY(-2px);
+}
 .cta-section .actions .btn { min-width: 154px; }
-.social-links { display: flex; gap: 10px; margin-top: 22px; }
+.social-link { display: flex; gap: 10px; margin-top: 22px; }
 .social-links a {
   display: grid; place-items: center; width: 38px; height: 38px;
   color: var(--text-main); border: 1px solid var(--border-subtle); border-radius: 50%;
 }
 .social-links a:hover { color: var(--brand-blue); border-color: var(--brand-blue); }
 .social-links svg { width: 17px; height: 17px; fill: currentColor; }
+.social-links a { font-size: 0; }
+.social-links a svg { width: 18px; height: 18px; }
+
+/* Contact information and form share a row before the map. */
+.contact-top { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 72px; align-items: start; }
+.contact-top .contact-form { margin: 0; }
+.contact-map { width: 100%; margin-top: 48px; }
+.contact-map .map-illustration > svg { height: 350px; }
+.contact-map .map-caption { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+
+/* Resets whenever a pairing leaves the viewport, ready to replay on return. */
+.reveal { opacity: 0; transition: opacity .65s ease, transform .7s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }
+.reveal-from-left { transform: translateX(-42px); }
+.reveal-from-right { transform: translateX(42px); }
+.reveal.is-visible { opacity: 1; transform: translateX(0); }
 
 /* Alternating mission and vision story blocks. */
 .about-split { align-items: center; }
@@ -1782,4 +1868,10 @@ textarea {
   .switcher-tab { min-height: 47px; font-size: 11px; }
   .work-panel { min-height: 88vh; padding-block: 90px; }
   .work-panel p { font-size: 14px; }
+  .contact-top { grid-template-columns: 1fr; gap: 38px; }
+  .contact-map { margin-top: 34px; }
+  .contact-map .map-caption { display: block; }
+  .contact-map .map-caption .btn { margin-top: 20px; }
+  .reveal-from-left, .reveal-from-right { transform: translateY(28px); }
+  .reveal.is-visible { transform: translateY(0); }
 }
