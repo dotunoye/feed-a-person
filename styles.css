@@ -1188,6 +1188,7 @@ textarea {
   }
   .split {
     gap: 35px;
+    display: flex;
   }
   .split.reverse > figure {
     order: 0;
