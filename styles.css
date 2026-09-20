@@ -1188,7 +1188,7 @@ textarea {
   }
   .split {
     gap: 35px;
-    display: flex;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
   .split.reverse > figure {
     order: 0;
