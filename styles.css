@@ -1070,7 +1070,7 @@ textarea {
   .contact-grid,
   .split.align-start {
     grid-template-columns: 1fr;
-    gap: 45px;
+    gap: 20px;
   }
   .donate-image img {
     max-height: 350px;
@@ -1805,8 +1805,8 @@ textarea {
 }
 
 .social-icon {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   object-fit: contain;
   display: block;
   transition: opacity 0.2s ease;
@@ -1921,27 +1921,181 @@ textarea {
 
 /* Three-way involvement switcher. */
 
-.involve-section-copy{
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: clamp(28px, 4vw, 52px);
+
+/* Donor Identity Wrapper */
+.donor-identity-module {
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--color-border, #303030);
+  padding-top: 1.5rem;
 }
-.involve-section-copy p{
+
+.module-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted, #8e8e8e);
+  margin-bottom: 0.75rem;
+}
+
+/* Sliding Pill Container */
+.segmented-control {
+  position: relative;
+  display: flex;
+  background-color: var(--color-bg, #121212);
+  border: 1px solid var(--color-border, #303030);
+  border-radius: 10px;
+  padding: 4px;
+  user-select: none;
+}
+
+/* Sliding Background Indicator */
+.control-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background-color: var(--color-surface-elevated, #222222);
+  border: 1px solid var(--color-border, #303030);
+  border-radius: 10px;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* State when Anonymous is active: slides pill to right */
+.segmented-control.is-anonymous .control-indicator {
+  transform: translateX(100%);
+}
+
+/* Switch Buttons */
+.control-btn {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #8e8e8e);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: color 0.25s ease;
+  text-align: center;
+}
+
+.control-btn.active {
+  color: var(--color-text, #f7f7f7);
+}
+
+/* Smooth Accordion Grid Collapse */
+.donor-form-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+}
+
+.donor-form-collapse.is-hidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.collapse-inner {
+  overflow: hidden;
+}
+
+/* Form Styles */
+.donor-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary, #c4c4c4);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--color-bg, #121212);
+  border: 1px solid var(--color-border, #303030);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.65rem 0.85rem;
+  color: var(--color-text, #f7f7f7);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary, #38b6ff);
+}
+.involve-section-copy {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: clamp(28px, 4vw, 52px);
+}
+
+.involve-section-copy p {
   margin-top: 8px;
 }
+
 .involvement-switcher {
   padding-block: 54px 92px;
 }
+
+/* Container */
 .switcher-tabs {
+  position: relative;
   display: flex;
   gap: 10px;
   padding: 8px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  border-radius: 14px;
   margin-bottom: 44px;
+  user-select: none;
 }
+
+/* Sliding Pill / Indicator */
+.switcher-indicator {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  border-radius: 10px;
+  background: #2a2a2a;
+  border: 1px solid var(--border-subtle);
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Individual Tab Buttons */
 .switcher-tab {
   flex: 1;
   min-height: 52px;
@@ -1950,15 +2104,25 @@ textarea {
   background: transparent;
   color: var(--text-muted);
   font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-.switcher-tabs :hover{
-  border: 1px solid var(--text-muted);
+
+/* Hover state only on non-active tabs */
+.switcher-tab:hover:not([aria-selected="true"]) {
+  border-color: var(--text-muted);
+  color: var(--text-main);
 }
+
+/* Active Tab Typography */
 .switcher-tab[aria-selected="true"] {
   color: var(--text-main);
-  background: #2a2a2a;
-  border-color: var(--border-subtle);
+  background: transparent; /* Indicator handles the background */
+  border-color: transparent;
 }
+
 .switcher-panel[hidden] {
   display: none;
 }
@@ -2012,10 +2176,10 @@ textarea {
   }
   .switcher-tab {
     min-height: 47px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .work-panel {
-    min-height: 88vh;
+    min-height: 100vh;
     padding-block: 90px;
   }
   .work-panel p {

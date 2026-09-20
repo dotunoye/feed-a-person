@@ -236,3 +236,82 @@ if (switcherTabs.length && location.hash) {
   const requested = switcherTabs.find((tab) => `#${tab.dataset.switch}` === location.hash);
   if (requested) activateInvolvementTab(requested);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const control = document.querySelector('.segmented-control');
+  const btnPublic = document.getElementById('btn-public');
+  const btnAnonymous = document.getElementById('btn-anonymous');
+  const formCollapse = document.getElementById('donorDetailsCollapse');
+
+  if (!control || !btnPublic || !btnAnonymous || !formCollapse) return;
+
+  function setPublic() {
+    control.classList.remove('is-anonymous');
+    btnPublic.classList.add('active');
+    btnPublic.setAttribute('aria-pressed', 'true');
+    btnAnonymous.classList.remove('active');
+    btnAnonymous.setAttribute('aria-pressed', 'false');
+
+    formCollapse.classList.remove('is-hidden');
+    formCollapse.setAttribute('aria-hidden', 'false');
+  }
+
+  function setAnonymous() {
+    control.classList.add('is-anonymous');
+    btnAnonymous.classList.add('active');
+    btnAnonymous.setAttribute('aria-pressed', 'true');
+    btnPublic.classList.remove('active');
+    btnPublic.setAttribute('aria-pressed', 'false');
+
+    formCollapse.classList.add('is-hidden');
+    formCollapse.setAttribute('aria-hidden', 'true');
+  }
+
+  btnPublic.addEventListener('click', setPublic);
+  btnAnonymous.addEventListener('click', setAnonymous);
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tabsContainer = document.querySelector('.switcher-tabs');
+  if (!tabsContainer) return;
+
+  const tabs = tabsContainer.querySelectorAll('.switcher-tab');
+  const indicator = tabsContainer.querySelector('.switcher-indicator');
+  const panels = document.querySelectorAll('.switcher-panel');
+
+  function updateIndicator(targetTab) {
+    if (!targetTab || !indicator) return;
+    indicator.style.width = `${targetTab.offsetWidth}px`;
+    indicator.style.transform = `translateX(${targetTab.offsetLeft}px)`;
+  }
+
+  function selectTab(selectedTab) {
+    tabs.forEach((tab) => {
+      const isActive = tab === selectedTab;
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+
+    updateIndicator(selectedTab);
+
+    const targetPanelId = selectedTab.getAttribute('aria-controls');
+    panels.forEach((panel) => {
+      panel.hidden = panel.id !== targetPanelId;
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => selectTab(tab));
+  });
+
+  const activeTab = tabsContainer.querySelector('.switcher-tab[aria-selected="true"]') || tabs[0];
+  if (activeTab) {
+    setTimeout(() => updateIndicator(activeTab), 50);
+  }
+
+  window.addEventListener('resize', () => {
+    const currentTab = tabsContainer.querySelector('.switcher-tab[aria-selected="true"]');
+    if (currentTab) updateIndicator(currentTab);
+  });
+});

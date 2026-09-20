@@ -49,11 +49,17 @@
         <section class="involvement-switcher">
             <div class="container">
                 <div class="switcher-tabs" role="tablist" aria-label="Ways to get involved">
+                    <div class="switcher-indicator" aria-hidden="true"></div>
+
                     <button class="switcher-tab" id="donate-tab" role="tab" aria-selected="true" aria-controls="donate"
                         data-switch="donate">
-                        Donate</button><button class="switcher-tab" id="volunteer-tab" role="tab" aria-selected="false"
+                        Donate
+                    </button>
+                    <button class="switcher-tab" id="volunteer-tab" role="tab" aria-selected="false"
                         aria-controls="volunteer" data-switch="volunteer" tabindex="-1">
-                        Volunteer</button><button class="switcher-tab" id="partner-tab" role="tab" aria-selected="false"
+                        Volunteer
+                    </button>
+                    <button class="switcher-tab" id="partner-tab" role="tab" aria-selected="false"
                         aria-controls="partner" data-switch="partner" tabindex="-1">
                         Partner
                     </button>
@@ -75,30 +81,11 @@
                                 </p>
                             </div>
                         </div>
+
                         <div class="donation-card">
                             <span class="eyebrow">EVERY CONTRIBUTION COUNTS</span>
                             <h3>Give with purpose.</h3>
-                            <!-- <fieldset class="amount-fieldset">
-                                <legend>Choose an amount (NGN)</legend>
-                                <div class="amount-options">
-                                    <button class="amount-button" type="button" data-amount="2000" aria-pressed="false">
-                                        ₦2,000</button><button class="amount-button selected" type="button"
-                                        data-amount="5000" aria-pressed="true">
-                                        ₦5,000</button><button class="amount-button" type="button" data-amount="10000"
-                                        aria-pressed="false">
-                                        ₦10,000
-                                    </button>
-                                </div>
-                                <label for="custom-amount">Or enter an amount (₦)</label><input id="custom-amount"
-                                    type="number" min="100" step="1" inputmode="numeric" placeholder="Your amount" />
-                            </fieldset>
-                            <button id="donate-button" class="btn btn-donate btn-wide" type="button"
-                                aria-describedby="donation-status">
-                                Donate ₦5,000
-                            </button> -->
-                            <!-- <p class="form-status" id="donation-status" role="status">
-                                Online giving is not connected yet. No payment will be taken.
-                            </p> -->
+
                             <div class="bank-details">
                                 <h3>Bank transfer</h3>
                                 <dl>
@@ -116,6 +103,47 @@
                                     </div>
                                 </dl>
                             </div>
+
+                            <!-- Donor Identity Switcher & Sliding Form -->
+                            <div class="donor-identity-module">
+                                <label class="module-label">Donor Recognition</label>
+
+                                <!-- Sliding Segmented Toggle -->
+                                <div class="segmented-control" role="group" aria-label="Donor Identification Option">
+                                    <div class="control-indicator"></div>
+                                    <button type="button" class="control-btn active" id="btn-public"
+                                        aria-pressed="true">
+                                        Add Details
+                                    </button>
+                                    <button type="button" class="control-btn" id="btn-anonymous" aria-pressed="false">
+                                        Keep Anonymous
+                                    </button>
+                                </div>
+
+                                <!-- Collapsible Details Form Container -->
+                                <div class="donor-form-collapse" id="donorDetailsCollapse" aria-hidden="false">
+                                    <div class="collapse-inner">
+                                        <form class="donor-fields" onsubmit="event.preventDefault();">
+                                            <div class="form-group">
+                                                <label for="donor-name">Full Name</label>
+                                                <input type="text" id="donor-name" placeholder="e.g. Tunde Adeyemi"
+                                                    required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="donor-phone">Phone Number</label>
+                                                <input type="tel" id="donor-phone"
+                                                    placeholder="e.g. +234 800 000 0000" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="donor-note">Short Note (Optional)</label>
+                                                <textarea id="donor-note" rows="2"
+                                                    placeholder="e.g. Dedicated to Covenant University matriculation run"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </section>
@@ -211,6 +239,7 @@
                     </div>
                 </section>
             </div>
+            </div>
         </section>
         <section class="cta-section">
             <div class="container cta-inner">
@@ -229,36 +258,71 @@
         </section>
     </main>
     <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html" aria-label="Feed A Person home"><img src="assets/logo.png"
-                        alt="Feed A Person" width="2246" height="1616" /></a>
-                <p>Good food deserves a second destination.<br />Someone’s plate.</p>
-                <div class="social-links" aria-label="Social media">
-                    <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Instagram">◎</a><a href="#"
-                        aria-label="Facebook">f</a><a href="#" aria-label="TikTok">♪</a>
-                </div>
-            </div>
-            <div>
-                <h2>Discover</h2>
-                <a href="about.html">Our story</a><a href="impact.html">The gallery</a>
-            </div>
-            <div>
-                <h2>Make a difference</h2>
-                <a href="#donate">Donate</a><a href="#volunteer">Volunteer with us</a><a href="#partner">Partner with
-                    FAP</a>
-            </div>
-            <div>
-                <h2>Find us</h2>
-                <p>Covenant University,<br />Ota, Ogun state.</p>
-                <a href="tel:+2347047341823">07047341823</a><a class="footer-email"
-                    href="mailto:feedaperson.initiative@gmail.com">feedaperson.initiative@gmail.com</a>
-            </div>
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="index.html" aria-label="Feed A Person home"
+            ><img
+              src="assets/logo.png"
+              alt="Feed A Person"
+              width="2246"
+              height="1616"
+          /></a>
+          <p>Good food deserves a second destination.<br />Someone’s plate.</p>
         </div>
-        <div class="container footer-bottom">
-            <span>© <span data-year>2026</span> Feed A Person Initiative</span><span>With care. With community. With
-                purpose.</span>
+        <div>
+          <h2>Discover</h2>
+          <a href="about.html">Our story</a
+          ><a href="impact.html">The gallery</a>
+          <div class="social-links">
+            <a
+              href="IG- https://www.instagram.com/we.are.feed.a.person?stkn=Zm41cTV4ZzBmdmgx&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-btn"
+              aria-label="Instagram"
+            >
+              <img
+                src="assets/icons/instagram.svg"
+                alt="Instagram"
+                class="social-icon"
+              />
+            </a>
+            <a
+              href="Linkedin-https://www.linkedin.com/company/feed-a-person/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-btn"
+              aria-label="LinkedIn"
+            >
+              <img
+                src="assets/icons/linkedin.svg"
+                alt="LinkedIn"
+                class="social-icon"
+              />
+            </a>
+          </div>
         </div>
+        <div>
+          <h2>Make a difference</h2>
+          <a href="involved.html#donate">Donate</a
+          ><a href="involved.html#volunteer">Volunteer with us</a
+          ><a href="involved.html#partner">Partner with FAP</a>
+        </div>
+        <div>
+          <h2>Find us</h2>
+          <p>Covenant University,<br />Ota, Ogun state.</p>
+          <a href="tel:+2347047341823">08088186853</a
+          ><a
+            class="footer-email"
+            href="mailto:feedaperson.initiative@gmail.com"
+            >feedaperson.initiative@gmail.com</a
+          >
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span data-year>2026</span> Feed A Person Initiative</span
+        ><span>Reduce waste, feed people.</span>
+      </div>
     </footer>
 </body>
 
