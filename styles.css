@@ -1370,6 +1370,13 @@ textarea {
 }
 .btn-wide {
   justify-content: center;
+  background: var(--brand-orange);
+  border: 1px solid var(--border-subtle, #303030);
+  color: #000000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  cursor: pointer;
+  flex: 1;
 }
 .feature-image,
 .donate-image,
@@ -2205,4 +2212,163 @@ textarea {
   .reveal.is-visible {
     transform: translateY(0);
   }
+}
+
+/* Copy Account Row */
+.account-number-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-copy-account {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface, #1e1e1e);
+  border: 1px solid var(--border-subtle, #303030);
+  color: var(--text-muted, #8e8e8e);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-account:hover {
+  border-color: var(--brand-blue, #38b6ff);
+  color: var(--text-main, #f7f7f7);
+}
+
+.copy-feedback {
+  display: none;
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a2a2a;
+  border: 1px solid var(--border-subtle, #303030);
+  color: #4ade80;
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.btn-copy-account.copied .copy-feedback {
+  display: block;
+}
+
+/* Multi-step Form Controls */
+.form-stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle, #303030);
+  gap: 8px;
+}
+
+.step-indicator {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted, #8e8e8e);
+}
+
+.step-indicator.active {
+  color: var(--brand-blue, #38b6ff);
+}
+
+.step-actions {
+  margin-top: 20px;
+}
+
+.step-actions.split-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-prev {
+  background: transparent;
+  border: 1px solid var(--border-subtle, #303030);
+  color: var(--text-muted, #8e8e8e);
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-next {
+  background: #2a2a2a;
+  border: 1px solid var(--border-subtle, #303030);
+  color: var(--text-main, #f7f7f7);
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Status Notifications */
+.form-status {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+
+.form-status.success {
+  color: #4ade80;
+}
+
+.form-status.error {
+  color: #f87171;
+}
+
+.form-status.success-expanded {
+  margin-top: 1.5rem;
+  min-height: auto;
+}
+
+.volunteer-success-box {
+  background-color: var(--bg-surface, #1e1e1e);
+  border: 1px solid var(--border-subtle, #303030);
+  border-radius: var(--radius-md, 14px);
+  padding: clamp(24px, 3vw, 36px);
+  text-align: left; /* Left-aligned feels more like an official memo than a promo card */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.volunteer-success-box h4 {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: 1.4rem;
+  color: var(--text-main, #f7f7f7);
+  margin: 0;
+}
+
+.volunteer-success-box p {
+  color: var(--text-muted, #8e8e8e);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.volunteer-success-box .community-pitch {
+  color: var(--text-main, #f7f7f7);
+  margin-top: 6px;
+}
+
+/* Subtle, high-contrast text link */
+.link-whatsapp-inline {
+  color: var(--brand-blue, #38b6ff);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.link-whatsapp-inline:hover {
+  color: #fff;
+  text-decoration-color: #fff;
 }
