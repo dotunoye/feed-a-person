@@ -1774,7 +1774,7 @@ textarea {
 
 /* Refined calls to action and readable footer type. */
 .btn-secondary {
-  min-width: 154px;
+  min-width: 100px;
   border: 1px solid #aeadad;
   background: transparent;
   color: #aeadad;
@@ -1786,9 +1786,9 @@ textarea {
   color: #121212;
 }
 
-.cta-section .actions .btn {
+/* .cta-section .actions .btn {
   min-width: 154px;
-}
+} */
 
 .social-links {
   display: flex;
