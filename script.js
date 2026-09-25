@@ -451,3 +451,231 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 });
+
+// --- DUAL COUNTDOWN ENGINE (Main Clock + Modal Clock) ---
+const targetDateStr = "2026-10-29T14:00:00+01:00"; // Adjust to your actual target date
+const targetTime = new Date(targetDateStr).getTime();
+
+function updateClocks() {
+  const now = new Date().getTime();
+  const diff = targetTime - now;
+
+if (diff <= 0) {
+    clearInterval(clockInterval);
+    
+    // 1. Swap the Main Homepage Clock (if it exists)
+    const clockContainer = document.getElementById('eventClock');
+    if (clockContainer) {
+      clockContainer.innerHTML = '<div class="live-indicator"><span class="pulse-dot"></span> D-DAY: LIVE OPERATIONS</div><p>Head to the Live Telemetry Dashboard.</p>';
+    }
+
+    // 2. Swap the Modal States
+    const stateCountdown = document.getElementById('state-countdown');
+    const stateLive = document.getElementById('state-live');
+    
+    if (stateCountdown && stateLive) {
+      stateCountdown.classList.remove('is-active');
+      stateLive.classList.add('is-active');
+    }
+    
+    return; // Kill the math engine so it stops counting negative numbers
+  }
+
+  // Calculate time units
+  const dStr = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+  const hStr = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+  const mStr = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+  const sStr = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+  // Update massive homepage clock (if it exists on page)
+  const elDays = document.getElementById('days');
+  if (elDays) {
+    elDays.textContent = dStr;
+    document.getElementById('hours').textContent = hStr;
+    document.getElementById('minutes').textContent = mStr;
+    document.getElementById('seconds').textContent = sStr;
+  }
+
+  // Update modal clock (if it exists on page)
+  const modDays = document.getElementById('modal-days');
+  if (modDays) {
+    modDays.textContent = dStr;
+    document.getElementById('modal-hours').textContent = hStr;
+    document.getElementById('modal-minutes').textContent = mStr;
+    document.getElementById('modal-seconds').textContent = sStr;
+  }
+}
+
+// Initialize immediately to prevent layout flash, then interval
+updateClocks();
+const clockInterval = setInterval(updateClocks, 1000);
+
+// // --- MODAL TAKEOVER LOGIC ---
+// const toast = document.getElementById('dispatchToast');
+// const closeToastBtn = document.getElementById('closeToast');
+
+// if (toast && closeToastBtn) {
+//   const isDismissed = sessionStorage.getItem('fap_toast_dismissed');
+
+//   // Helper function to keep our code clean when killing the modal
+//   const dismissModal = () => {
+//     toast.classList.remove('is-visible');
+//     toast.setAttribute('aria-hidden', 'true');
+//     sessionStorage.setItem('fap_toast_dismissed', 'true');
+//   };
+
+//   if (!isDismissed) {
+//     // TIMING CONTROL: 1500 = 1.5 seconds. Change this number to speed it up or slow it down.
+//     setTimeout(() => {
+//       toast.classList.add('is-visible');
+//       toast.setAttribute('aria-hidden', 'false');
+//     }, 1000); 
+//   }
+
+//   // 1. Close when they click the 'X' button
+//   closeToastBtn.addEventListener('click', dismissModal);
+
+//   // 2. Close when they click anywhere outside the modal box
+//   document.addEventListener('click', (event) => {
+//     const isModalVisible = toast.classList.contains('is-visible');
+//     const isClickOutside = !toast.contains(event.target);
+    
+//     if (isModalVisible && isClickOutside) {
+//       dismissModal();
+//     }
+//   });
+// }
+
+// --- MODAL TAKEOVER LOGIC (FIRES EVERY PAGE LOAD) ---
+const toast = document.getElementById('dispatchToast');
+const closeToastBtn = document.getElementById('closeToast');
+
+if (toast && closeToastBtn) {
+  const dismissModal = () => {
+    toast.classList.remove('is-visible');
+    toast.setAttribute('aria-hidden', 'true');
+  };
+
+  // Fires unconditionally after 1.5 seconds on every page load
+  setTimeout(() => {
+    toast.classList.add('is-visible');
+    toast.setAttribute('aria-hidden', 'false');
+  }, 1500); 
+
+  // 1. Close when they click the 'X' button
+  closeToastBtn.addEventListener('click', dismissModal);
+
+  // 2. Close when they click anywhere outside the modal box
+  document.addEventListener('click', (event) => {
+    const isModalVisible = toast.classList.contains('is-visible');
+    const isClickOutside = !toast.contains(event.target);
+    
+    if (isModalVisible && isClickOutside) {
+      dismissModal();
+    }
+  });
+}
+
+// --- LIVE TELEMETRY ENGINE WITH OVERFLOW ---
+
+// In production, this function will ping your CMS (Sanity, Supabase, or Google Sheets)
+// --- NATIVE GOOGLE SHEETS TELEMETRY ENGINE (NO PROXY) ---
+
+async function fetchLiveData() {
+  // Direct connection to Google's CSV export
+  const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9fmK3uzhFNA2Np47YHPOV_GJiFS1IuMOjnNiTtD9VQ2GgU4G_NSUuNHKVhKIvYm1LbdtLcj1kKSgo/pub?output=csv'; 
+  
+  // Cache-buster to guarantee live data
+  const targetUrl = `${sheetUrl}&t=${new Date().getTime()}`;
+  
+  try {
+    const response = await fetch(targetUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const csvText = await response.text();
+    
+    // Parse the CSV into a Key-Value object
+    const rows = csvText.split('\n');
+    const data = {};
+    
+    rows.forEach(row => {
+      const [key, ...valueParts] = row.split(',');
+      if (key && valueParts.length > 0) {
+        data[key.trim()] = valueParts.join(',').replace('\r', '').trim(); 
+      }
+    });
+
+    // 1. Update the Sync Timestamp
+    if (document.getElementById('sync-time')) {
+      document.getElementById('sync-time').textContent = data['last_updated'] || '--:--';
+    }
+
+    // 2. Parse Numbers for the Rings (fallback to 0 or 2000 if blank)
+    const foodCurrent = parseInt(data['food_current']) || 0;
+    const foodTarget = parseInt(data['food_target']) || 2000;
+    const peopleCurrent = parseInt(data['people_current']) || 0;
+    const peopleTarget = parseInt(data['people_target']) || 2000;
+
+    // 3. Fire the Ring Animations
+    updateRing('food-ring', 'food-overflow', 'food-percent', 'food-current', foodCurrent, foodTarget, true);
+    updateRing('people-ring', 'people-overflow', 'people-percent', 'people-current', peopleCurrent, peopleTarget, false);
+
+  } catch (error) {
+    console.error("Critical failure pulling telemetry from Google Sheets:", error);
+  }
+}
+
+// Fire immediately on load
+document.addEventListener('DOMContentLoaded', fetchLiveData);
+
+// Auto-Refresh every 60 seconds
+setInterval(fetchLiveData, 60000);
+
+// The Math Engine
+function updateRing(primaryId, overflowId, percentId, currentId, currentVal, targetVal, isKg) {
+  const primaryRing = document.getElementById(primaryId);
+  const overflowRing = document.getElementById(overflowId);
+  const percentText = document.getElementById(percentId);
+  const currentText = document.getElementById(currentId);
+
+  if (!primaryRing || !overflowRing) return;
+
+  // Calculate percentages
+  const rawPercent = (currentVal / targetVal) * 100;
+  const basePercent = Math.min(rawPercent, 100);
+  const overPercent = Math.max(0, rawPercent - 100);
+
+  // SVG Geometry
+  const radius = primaryRing.r.baseVal.value;
+  const circumference = radius * 2 * Math.PI;
+
+  primaryRing.style.strokeDasharray = `${circumference} ${circumference}`;
+  overflowRing.style.strokeDasharray = `${circumference} ${circumference}`;
+
+  // Start both at empty
+  primaryRing.style.strokeDashoffset = circumference;
+  overflowRing.style.strokeDashoffset = circumference;
+
+  // Update text
+  percentText.textContent = `${Math.round(rawPercent)}%`;
+  currentText.innerHTML = isKg ? `${currentVal.toLocaleString()} <small>packs</small>` : currentVal.toLocaleString();
+
+  // Execute animations
+  setTimeout(() => {
+    // Draw base ring (stops at 100%)
+    primaryRing.style.strokeDashoffset = circumference - (basePercent / 100) * circumference;
+    
+    // Draw overflow ring on top (only visible if > 100%)
+    if (overPercent > 0) {
+      // Caps the overflow visual at another 100% so it doesn't wrap infinitely
+      const displayOverflow = Math.min(overPercent, 100); 
+      overflowRing.style.strokeDashoffset = circumference - (displayOverflow / 100) * circumference;
+    }
+  }, 100);
+}
+
+// Run on load. You can also set a setInterval here to poll the CMS every 60 seconds on D-Day.
+document.addEventListener('DOMContentLoaded', fetchLiveData);

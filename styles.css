@@ -2372,3 +2372,763 @@ textarea {
   color: #fff;
   text-decoration-color: #fff;
 }
+
+
+/* Event Countdown Section */
+.event-countdown-section {
+  padding-block: clamp(40px, 6vw, 72px);
+  background-color: var(--bg-base, #121212);
+}
+
+.countdown-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  background: var(--bg-surface, #1e1e1e);
+  border: 1px solid var(--border-subtle, #303030);
+  border-radius: var(--radius-md, 16px);
+  padding: clamp(28px, 4vw, 44px);
+}
+
+.event-meta {
+  max-width: 540px;
+}
+
+.event-title {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text-main, #f7f7f7);
+  line-height: 1.25;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.event-desc {
+  color: var(--text-muted, #8e8e8e);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* .event-location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-accent, #ffac4c);
+  background: rgba(255, 172, 76, 0.08);
+  border: 1px solid rgba(255, 172, 76, 0.2);
+  padding: 4px 12px;
+  border-radius: 50px;
+} */
+
+/* Clock Unit Display */
+.countdown-clock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spreads items evenly */
+  box-sizing: border-box;
+  background: #000000;
+  border: 1px solid var(--border-subtle, #303030);
+  border-radius: 12px;
+  padding: 24px 32px;
+  gap: 10px; /* Reduced base gap */
+  user-select: none;
+}
+
+.clock-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0px; /* The '0px' basis is the magic bullet for overflow */
+  min-width: 0; 
+}
+
+.clock-value {
+  font-family: var(--font-body);
+  font-size: clamp(1.6rem, 7vw, 3.5rem);
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.clock-label {
+  font-size: clamp(0.55rem, 2.5vw, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666666;
+  margin-top: 8px;
+}
+
+.clock-separator {
+  font-family: ui-monospace, monospace;
+  font-size: clamp(1.4rem, 6vw, 2.5rem);
+  font-weight: 300;
+  color: #333333;
+  margin-top: -16px;
+  flex-shrink: 0; 
+}
+
+/* Event Expired State */
+.event-live-banner {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: 1.35rem;
+  color: var(--color-accent, #ffac4c);
+  padding: 12px 24px;
+}
+
+@media (max-width: 860px) {
+  .countdown-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .countdown-clock {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
+/* Meta Pills Row */
+.event-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted, #8e8e8e);
+  background: var(--bg-base, #121212);
+  border: 1px solid var(--border-subtle, #303030);
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+.meta-pill.highlight {
+  color: #121212;
+  background: var(--text-main, #f7f7f7);
+  border-color: var(--text-main, #f7f7f7);
+  font-weight: 500;
+}
+
+/* Clock Wrapper & Date Label */
+.clock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns to the right on desktop */
+  gap: 8px;
+  width: 100%;
+}
+
+.target-date-display {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-main, #f7f7f7);
+  padding-right: 4px;
+}
+
+@media (max-width: 860px) {
+  .clock-wrapper {
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .countdown-clock {
+    padding: 16px 12px;
+    gap: 4px;
+  }
+  .clock-separator {
+    margin-top: -12px;
+  }
+}
+
+/* Team Section */
+.team-section {
+  padding-block: clamp(60px, 8vw, 100px);
+  background: var(--bg-base, #121212);
+}
+
+.team-header {
+  max-width: 640px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.team-heading {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--text-main, #f7f7f7);
+  line-height: 1.2;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.team-subtitle {
+  color: var(--text-muted, #8e8e8e);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* 3-Column Responsive Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.team-card {
+  background: var(--bg-surface, #1e1e1e);
+  border: 1px solid var(--border-subtle, #303030);
+  border-radius: var(--radius-md, 16px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover, #444444);
+}
+
+/* Image Presentation with Muted Editorial Desaturation */
+.team-photo-box {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background-color: #161616;
+}
+
+.team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(25%);
+  transition: filter 0.3s ease, transform 0.4s ease;
+  position: top;
+}
+
+.team-card:hover .team-photo {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+.team-details {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.team-unit {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent, #ffac4c);
+  margin-bottom: 6px;
+}
+
+.team-name {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: 1.4rem;
+  color: var(--text-main, #f7f7f7);
+  margin: 0 0 4px;
+}
+
+.team-role {
+  color: var(--text-muted, #8e8e8e);
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.team-socials {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.team-socials a {
+  color: var(--text-muted, #8e8e8e);
+  transition: color 0.2s ease;
+}
+
+.team-socials a:hover {
+  color: var(--color-primary, #38b6ff);
+}
+
+@media (max-width: 960px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Central Modal Takeover */
+.dispatch-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10000;
+  background: #1c1c1c; /* Matches your dark card surface */
+  border: 1px solid var(--border-subtle, #303030);
+  border-radius: 16px;
+  /* 100vmax shadow dims the entire screen instantly */
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9), 0 0 0 100vmax rgba(0, 0, 0, 0.75);
+  
+  width: calc(100% - 32px);
+  max-width: 580px; /* Wide enough to fit the clock beautifully */
+  padding: 32px;
+  
+  transform: translate(-50%, calc(-50% + 40px)) scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.3s ease, 
+              visibility 0.3s ease;
+}
+
+.dispatch-toast.is-visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-toast-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8e8e8e;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-toast-btn:hover {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Typography matching the main card */
+.toast-eyebrow {
+  color: #38b6ff; /* The exact blue from your image */
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.toast-title {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: 1.8rem;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+}
+
+.toast-desc {
+  color: #8e8e8e;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.toast-date-wrapper {
+  display: flex;
+  justify-content: flex-end; /* Pushes date to the right above the clock */
+  margin-top: 8px;
+  margin-bottom: -8px; /* Tucks it closer to the black clock box */
+}
+
+.toast-pills {
+  margin-top: 8px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 500px) {
+  .dispatch-toast {
+    padding: 24px 16px;
+  }
+  .toast-date-wrapper {
+    justify-content: flex-start;
+  }
+  .toast-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Bento CTA Container */
+.toast-cta-bento {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Tight spacing locks it into a cohesive block */
+  margin-top: 24px;
+  width: 100%;
+}
+
+/* Primary Button - Dominates the visual space */
+.btnn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--text-main, #f7f7f7);
+  color: #121212;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnn-primary:hover {
+  background: var(--color-accent, #ffac4c);
+  color: #121212;
+  transform: translateY(-2px);
+}
+
+.btnn-primary:hover svg {
+  transform: translateX(4px);
+}
+
+/* Split Row for Secondary Actions */
+.cta-split-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Secondary Buttons - Recessed and subtle */
+.btnn-secondary {
+  flex: 1; /* Both buttons take up exactly half the space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #242424; /* Slightly lighter than the modal background */
+  color: #cac9c9;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 16px;
+  border: 1px solid #a4a4a4;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnn-secondary:hover {
+  background: #333333;
+  color: #ffffff;
+  border-color: #555555;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 500px) {
+  .toast-cta-bento {
+    margin-top: 16px;
+  }
+  .btnn-primary {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+  }
+  .btnn-secondary {
+    padding: 12px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Telemetry Core */
+.d-day-telemetry {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.telemetry-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Static, brutalist live indicator */
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent, #ffac4c);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.static-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent, #ffac4c);
+  border-radius: 50%;
+}
+
+.dispatch-title {
+  font-family: var(--font-cardo, 'Cardo', serif);
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+}
+
+.dispatch-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8e8e8e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.meta-divider {
+  color: #444;
+}
+
+.last-updated {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #666;
+}
+.last-updated span {
+  color: #ffffff;
+}
+
+/* Tracker Layout */
+.tracker-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.tracker-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
+}
+
+/* The Structural Divider */
+.tracker-divider {
+  width: 1px;
+  background-color: #2a2a2a;
+}
+
+.tracker-title {
+  font-family: var(--font-cardo);
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin: 0 0 40px 0;
+}
+
+/* SVG Rings */
+.circular-progress-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 40px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: transparent;
+  stroke: #5c5c5c; /* Very dark grey */
+  stroke-width: 14;
+}
+
+.ring-fill {
+  fill: transparent;
+  stroke-width: 14;
+  stroke-linecap: round; /* Brutalist flat ends instead of rounded */
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.primary-ring {
+  stroke: var(--color-accent, #ffac4c);
+}
+
+.overflow-ring {
+  stroke: #38b6ff; /* Brand blue kicks in > 100% */
+}
+
+.ring-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-body);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+}
+
+/* Stats */
+.tracker-stats {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #2a2a2a;
+  padding-top: 24px;
+  margin-bottom: 24px;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-block.right {
+  text-align: right;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #afafaf;
+  margin-bottom: 8px;
+}
+
+.stat-val {
+  font-family: var(--font-body);
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.stat-val small {
+  font-size: 0.9rem;
+  color: #8e8e8e;
+}
+
+/* Extra Context Text */
+.tracker-note {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #8e8e8e;
+  text-align: center;
+  margin: 0;
+  max-width: 300px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .tracker-container {
+    flex-direction: column;
+  }
+  .tracker-block {
+    padding: 20px 0;
+  }
+  .tracker-divider {
+    width: 100%;
+    height: 1px;
+  }
+  .meta-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .dispatch-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Modal State Management */
+.modal-state {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-state.is-active {
+  display: flex;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* D-Day Live Header Tweaks */
+.live-header {
+  text-align: center;
+  padding: 24px 0 16px 0;
+}
+
+/* Reuse your pulse dot from the telemetry page */
+/* .live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ff3b30;
+  background: rgba(255, 59, 48, 0.1);
+  padding: 6px 16px;
+  border-radius: 50px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+} */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--brand-orange);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
