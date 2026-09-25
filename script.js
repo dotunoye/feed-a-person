@@ -565,7 +565,7 @@ if (toast && closeToastBtn) {
     toast.setAttribute('aria-hidden', 'false');
     
     // 2. Starts the 5-second countdown to automatically hide it
-    autoKillTimer = setTimeout(dismissModal, 5000);
+    autoKillTimer = setTimeout(dismissModal, 7000);
   }, 1500); 
 
   // 3. Close when they click the 'X' button
