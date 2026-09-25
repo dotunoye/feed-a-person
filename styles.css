@@ -2812,7 +2812,7 @@ textarea {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 14px 24px;
+  padding: 14px 16px;
   border-radius: 16px;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -2866,7 +2866,7 @@ textarea {
     margin-top: 16px;
   }
   .btnn-primary {
-    padding: 16px 20px;
+    padding: 16px 10px;
     font-size: 0.95rem;
   }
   .btnn-secondary {

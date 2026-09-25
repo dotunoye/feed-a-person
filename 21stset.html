@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121212" />
+    <title>Get involved | Feed A Person</title>
+    <meta name="description" content="Donate, volunteer, or partner with Feed A Person." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&amp;family=Poppins:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="assets/tab-logo1.png" />
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <div class="logo-row" style="flex-direction: row; display: flex; gap: 16px; justify-content: center; align-items: center;">
+            <a class="brand" href="index.html" aria-label="Feed A Person home"><img src="assets/logo.png"
+                    alt="Feed A Person" width="2246" height="1616" /></a>
+            <a class="brand" href="index.html" aria-label="Feed A Person home"><img src="assets/21st-logo.png"
+                    alt="Feed A Person" width="2246" height="1616" style="border-radius: 8px; object-fit: cover; width: 100%;"/></a>
+            </div>
+                    <button class="menu-toggle"
+                aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+                <span style="background: black;"></span><span style="background: black;"></span>
+            </button>
+            <nav id="site-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="about.html">About us</a><a href="impact.html">Gallery</a><a
+                    href="involved.html" aria-current="page">Get involved</a><a href="contact.html">Contact</a><a
+                    class="btn btn-donate btn-small" href="#donate">Donate</a>
+            </nav>
+        </div>
+    </header>
+    <main id="main">
+        <section class="page-hero media-hero">
+            <img class="hero-media"
+                src="assets/convocation.png"
+                alt="People coordinating around a table" width="2200" height="1467" fetchpriority="high" />
+            <div class="hero-scrim"></div>
+            <div class="hero-copy">
+                <span class="eyebrow">BE PART OF THE MOVEMENT</span>
+                <h1>Your parting gift to us &<br/>Covenant University</h1>
+                <p>Let us know how you want to give.</p>
+            </div>
+        </section>
+        <section class="involvement-switcher">
+            <div class="container">
+                
+                <section class="switcher-panel" >
+                    <div class="split align-start">
+                        <div class="partner-intro">
+                            <span class="eyebrow">BE PART OF THE IMPACT</span>
+                            <h2>Turn surplus into<br />shared impact.</h2>
+                            <p>
+                                Your packs help us get to more and more people, you want to be a part of it.
+                            </p>
+                            <p style="border-left: 1px solid white; background: rgba(255, 255, 255, 0.13); padding-left: 8px; color: white; border-top-right-radius: 8px; border-bottom-right-radius: 8px; margin-top: 16px;">
+                                Did you know, 
+                                10 packs of food moves our target bar by about 0.5%
+                            </p>
+                            <p>Click <a href="dday.html" style="color: var(--brand-blue); margin-top: 16px;">here</a> on the D-day to see the progress </p>
+                        </div>
+
+                        <form class="surface-form" method="post" data-web3form data-form="partner">
+                            <input type="hidden" name="access_key" value="FILL IN THE NEW FORM KEY">
+                            <input type="hidden" name="subject" value="New Partnership Enquiry - Feed A Person">
+                            <input type="hidden" name="from_name" value="FAP Partner Desk">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                            <h3>Start a partnership.</h3>
+                            <p class="note">All fields are required.</p>
+                            <div class="field">
+                                <label for="giver-name">Your name</label>
+                                <input id="giver-name" name="name" type="text" autocomplete="name" required />
+                            </div>
+                            <div class="field">
+                                <label for="giver-email">Your email</label>
+                                <input id="giver-email" name="email" type="email" autocomplete="email" required />
+                            </div>
+                            <div class="field">
+                                <label for="consent">Are you willing to donate food packs to this initiative</label>
+                                <select id="consent" name="consent" required>
+                                    <option value="">Choose one</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="number-of-packs">How many food packs would youlike to donate.</label>
+                                <select id="no-of-packs" name="no-of-packs" required>
+                                    <option value="">Choose one</option>
+                                    <option>1 pack</option>
+                                    <option>5 packs</option>
+                                    <option>10 packs</option>
+                                    <option>15 packs</option>
+                                    <option>20 packs</option>
+                                    <option>More than 20 packs</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="giver-phone">Phone number</label>
+                                <input id="giver-phone" name="phone" type="tel" autocomplete="tel" required />
+                            </div>
+                            <div class="field">
+                                <label for="giver-whatsapp">Whatsapp number</label>
+                                <input id="giver-whatsapp" name="phone" type="tel" autocomplete="tel" required />
+                            </div>
+                            <div class="field">
+                                <label for="tent-number">Tent number</label>
+                                <input id="tent-number" name="tent-number" type="text" required />
+                            </div>
+                            <div class="field">
+                                <label for="message">Best way to reach you</label>
+                                <select id="message" name="message" required>
+                                    <option value="">Choose one</option>
+                                    <option>Whatsapp</option>
+                                    <option>Telegram</option>
+                                    <option>Email</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-submit btn-wide">
+                                Submit
+                            </button>
+                            <p class="form-status" role="status"></p>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            </div>
+        </section>
+        <!-- <section class="cta-section">
+            <div class="container cta-inner">
+                <div>
+                    <span class="eyebrow">THERE’S ENOUGH TO SHARE.</span>
+                    <h2>Help good food<br />go further.</h2>
+                </div>
+                <div>
+                    <p>A little support. A meal that matters.</p>
+                    <div class="actions">
+                        <a class="btn btn-donate" href="#donate">Donate</a><a class="btn btn-secondary"
+                            href="#volunteer">Give your time</a>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="brand" href="index.html" aria-label="Feed A Person home"><img src="assets/logo.png"
+                        alt="Feed A Person" width="2246" height="1616" /></a>
+                <p>Good food deserves a second destination.<br />Someone’s plate.</p>
+            </div>
+            <div>
+                <h2>Discover</h2>
+                <a href="about.html">Our story</a><a href="impact.html">The gallery</a>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/we.are.feed.a.person?stkn=Zm41cTV4ZzBmdmgx&utm_source=qr"
+                        target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+                        <img src="assets/icons/instagram.svg" alt="Instagram" class="social-icon" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/feed-a-person/" target="_blank"
+                        rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+                        <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="social-icon" />
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h2>Make a difference</h2>
+                <a href="involved.html#donate">Donate</a><a href="involved.html#volunteer">Volunteer with us</a><a
+                    href="involved.html#partner">Partner with FAP</a>
+            </div>
+            <div>
+                <h2>Find us</h2>
+                <p>Covenant University,<br />Ota, Ogun state.</p>
+                <a href="tel:+2347047341823">08088186853</a><a class="footer-email"
+                    href="mailto:feedaperson.initiative@gmail.com">feedaperson.initiative@gmail.com</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>© <span data-year>2026</span> Feed A Person Initiative</span><span>Reduce waste, feed people.</span>
+        </div>
+    </footer>
+</body>
+
+</html>
