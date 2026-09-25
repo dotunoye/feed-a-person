@@ -546,26 +546,32 @@ const clockInterval = setInterval(updateClocks, 1000);
 //   });
 // }
 
-// --- MODAL TAKEOVER LOGIC (FIRES EVERY PAGE LOAD) ---
+// --- MODAL TAKEOVER LOGIC (AUTO-DISMISS) ---
 const toast = document.getElementById('dispatchToast');
 const closeToastBtn = document.getElementById('closeToast');
 
 if (toast && closeToastBtn) {
+  let autoKillTimer; // Holds the 5-second self-destruct sequence
+
   const dismissModal = () => {
     toast.classList.remove('is-visible');
     toast.setAttribute('aria-hidden', 'true');
+    clearTimeout(autoKillTimer); // Kills the timer if they close it manually first
   };
 
-  // Fires unconditionally after 1.5 seconds on every page load
+  // 1. Fires unconditionally after 1.5 seconds
   setTimeout(() => {
     toast.classList.add('is-visible');
     toast.setAttribute('aria-hidden', 'false');
+    
+    // 2. Starts the 5-second countdown to automatically hide it
+    autoKillTimer = setTimeout(dismissModal, 5000);
   }, 1500); 
 
-  // 1. Close when they click the 'X' button
+  // 3. Close when they click the 'X' button
   closeToastBtn.addEventListener('click', dismissModal);
 
-  // 2. Close when they click anywhere outside the modal box
+  // 4. Close when they click anywhere outside the modal box
   document.addEventListener('click', (event) => {
     const isModalVisible = toast.classList.contains('is-visible');
     const isClickOutside = !toast.contains(event.target);
