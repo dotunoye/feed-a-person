@@ -3132,3 +3132,69 @@ textarea {
   border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
+
+/* Minimal Directory Section */
+.minimal-directory {
+  padding: 40px 20px;
+  background: var(--bg-surface, #121212);
+  border-top: 1px solid #1a1a1a;
+}
+
+.directory-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.directory-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 0.75rem;
+  color: #555555; /* Very recessed */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.directory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.directory-list a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #8e8e8e; /* Muted default state */
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+}
+
+/* Hover Physics */
+.directory-list a:hover {
+  color: #ffffff; /* Snaps to attention */
+}
+
+.directory-list a .arrow {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.directory-list a:hover .arrow {
+  transform: translate(2px, -2px); /* Snaps up and right */
+  color: var(--color-accent, #ffac4c); /* Flashes orange */
+}
+
+/* Mobile Alignment */
+@media (max-width: 500px) {
+  .directory-list a {
+    font-size: 1rem;
+  }
+}
