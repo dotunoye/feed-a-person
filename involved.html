@@ -184,7 +184,7 @@
                             </p>
                         </div>
 
-                        <form class="surface-form multi-step-form" id="volunteerForm" method="post" data-web3form
+                        <form class="surface-form multi-step-form" id="volunteerForm" method="post"
                             data-form="volunteer">
                             <input type="hidden" name="access_key" value="ae37f884-5c94-40c9-87eb-2482dc52ce9f">
                             <input type="hidden" name="subject" value="New Volunteer Intake - Feed A Person">
@@ -215,6 +215,10 @@
                                     <label for="volunteer-phone">Phone number</label>
                                     <input id="volunteer-phone" name="phone" type="tel" autocomplete="tel" required />
                                 </div>
+                                <div class="field">
+                                    <label for="volunteer-telegram">Telegram number</label>
+                                    <input id="volunteer-telegram" name="telegram" type="tel" autocomplete="tel" required />
+                                </div>
                                 <div class="step-actions">
                                     <button type="button" class="btn btn-next">Next Step &rarr;</button>
                                 </div>
@@ -235,6 +239,19 @@
                                         <option>Media</option>
                                         <option>Welfare</option>
                                         <option>Anywhere I'm needed</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="help">What skills can you contribute</label>
+                                    <select id="help" name="skill" required>
+                                        <option value="">Choose an area</option>
+                                        <option>Leadership</option>
+                                        <option>Logistics</option>
+                                        <option>Photography</option>
+                                        <option>Videography</option>
+                                        <option>Social Media</option>
+                                        <option>Sorting/Packing</option>
+                                        <option>Administration</option>
                                     </select>
                                 </div>
                                 <div class="field">
@@ -272,6 +289,19 @@
                                         <option>Bitewise</option>
                                         <option>JustTomii</option>
                                     </select>
+                                </div>
+                                <div class="field">
+                                    <label>Will you be available on the 29th of October (Convocation)</label>
+                                    <div class="radio-group" style="display: flex; gap: 20px; margin-top: 8px;">
+                                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                            <input type="radio" name="availability" value="Yes" required />
+                                            Yes
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                            <input type="radio" name="availability" value="No" required />
+                                            No
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="step-actions split-buttons">
                                     <button type="button" class="btn btn-prev">&larr; Back</button>

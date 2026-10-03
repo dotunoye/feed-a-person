@@ -685,3 +685,63 @@ function updateRing(primaryId, overflowId, percentId, currentId, currentVal, tar
 
 // Run on load. You can also set a setInterval here to poll the CMS every 60 seconds on D-Day.
 document.addEventListener('DOMContentLoaded', fetchLiveData);
+
+
+
+// --- DUAL SUBMISSION BYPASS (WEB3FORMS + GOOGLE SHEETS) ---
+
+const volForm = document.getElementById('volunteerForm');
+
+if (volForm) {
+  volForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Stops the default form jump
+    
+    const submitBtn = volForm.querySelector('.btn-submit');
+    const statusMsg = volForm.querySelector('.form-status');
+    
+    // Change button text so the user knows it's working
+    submitBtn.textContent = "Processing...";
+    
+    const formData = new FormData(volForm);
+    const dataObj = Object.fromEntries(formData.entries());
+    
+    // 1. SILENT FIRE TO GOOGLE SHEETS (Your Database)
+    fetch("https://script.google.com/macros/s/AKfycbxi5IJUTDs98VXrk9W0Q3zk7v8bQFRkZNzfZRqqw_-8tT7E7QJcyT4lZJuyFtNqHV6lvA/exec", {
+      method: "POST",
+      mode: "no-cors", // Bypasses browser security blocks for background requests
+      headers: { "Content-Type": "text/plain" }, // Tricks the CORS policy
+      body: JSON.stringify({ data: dataObj })
+    });
+    
+    // 2. FIRE TO WEB3FORMS (Your Email Inbox)
+    // 2. FIRE TO WEB3FORMS (Your Email Courier)
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+       if (data.success) {
+         // Nuke the form inputs and inject your custom success block
+         volForm.innerHTML = `
+            <div class="volunteer-success-box">
+              <h4>Application Received!</h4>
+              <p>Thank you for stepping up to bridge the route.</p>
+              <p class="community-pitch">Join the official volunteer task force on WhatsApp to get briefing dates and dispatch calls:</p>
+              <a href="https://chat.whatsapp.com/JoEyhZnDbAK6cdZzWPUvPi?mode=gi_t" target="_blank" rel="noopener noreferrer" class="link-whatsapp-inline btn-primary">
+                Join Volunteer Community &rarr;
+              </a>
+            </div>
+         `;
+       } else {
+         statusMsg.textContent = "Something went wrong. Please try again.";
+         statusMsg.style.color = "#ff3b30";
+         submitBtn.textContent = "Complete Application";
+       }
+    })
+    .catch(error => {
+        statusMsg.textContent = "Network error. Check your connection.";
+        submitBtn.textContent = "Complete Application";
+    });
+  });
+}
