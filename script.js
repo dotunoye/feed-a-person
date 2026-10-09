@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- DUAL COUNTDOWN ENGINE (Main Clock + Modal Clock) ---
-const targetDateStr = "2026-10-29T14:00:00+01:00"; // Adjust to your actual target date
+const targetDateStr = "2026-10-30T14:00:00+01:00"; // Adjust to your actual target date
 const targetTime = new Date(targetDateStr).getTime();
 
 function updateClocks() {
