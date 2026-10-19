@@ -407,11 +407,12 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>Application Received!</h4>
           <p>Thank you for stepping up to bridge the route.</p>
           <p class="community-pitch">Join the official volunteer task force on WhatsApp to get briefing dates and dispatch calls:</p>
-          <a href="https://chat.whatsapp.com/JoEyhZnDbAK6cdZzWPUvPi?mode=gi_t" target="_blank" rel="noopener noreferrer" class="link-whatsapp-inline">
+          <a href="https://t.me/c/3901383414/1" target="_blank" rel="noopener noreferrer" class="link-whatsapp-inline">
             Join Volunteer Community &rarr;
           </a>
         </div>
       `;
+
               statusEl.className = 'form-status success-expanded';
             }
           } else {
@@ -728,7 +729,7 @@ if (volForm) {
               <h4>Application Received!</h4>
               <p>Thank you for stepping up to bridge the route.</p>
               <p class="community-pitch">Join the official volunteer task force on WhatsApp to get briefing dates and dispatch calls:</p>
-              <a href="https://chat.whatsapp.com/JoEyhZnDbAK6cdZzWPUvPi?mode=gi_t" target="_blank" rel="noopener noreferrer" class="link-whatsapp-inline btn-primary">
+              <a href="https://t.me/c/3901383414/1" target="_blank" rel="noopener noreferrer" class="link-whatsapp-inline btn-primary">
                 Join Volunteer Community &rarr;
               </a>
             </div>
